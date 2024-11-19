@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:form id="f1">
+    <af:resource type="javascript" source="/Scripts.js"/>
+
+        <af:panelGroupLayout id="pgl1">
+          <af:popup id="reportPopup" contentDelivery="immediate"
+                    binding="#{Report.reportPopup}">
+            <af:dialog id="pt_d1" title="Report Generation"
+                       closeIconVisible="true">
+              <af:panelBox text="Enoc Report Test" id="pb1"
+                           showDisclosure="false">
+                <f:facet name="toolbar"></f:facet>
+                <af:inlineFrame id="pt_if1"
+                                inlineStyle="text-align:center; vertical-align:middle; width:800px; height:700.0px;"
+                                source="#{Report.servletUrl}"/>
+              </af:panelBox>
+            </af:dialog>
+          </af:popup>
+          <af:panelGroupLayout id="pgl2" halign="center" layout="vertical">
+            <af:outputText value="Report Generator Examples" id="ot1"/>
+            <af:spacer width="10" height="10" id="s3"/>
+            <!--Pdf-->
+            <af:outputText value="#{'PDF report '} #{Report.currentDate}"
+                           id="ot2"/>
+            <af:panelGroupLayout id="pgl3" halign="center" layout="horizontal">
+              <af:commandButton text="#{'Download report '}" id="cb2pdf">
+                <af:fileDownloadActionListener method="#{Report.downloadReportPdf}"
+                                               filename="test #{Report.currentDate}.pdf"
+                                               contentType="#{Report.contectType}"/>
+              </af:commandButton>
+              <af:spacer width="10" height="10" id="s1"/>
+              <af:commandButton text="Open report on new tab" id="cb1pdf"
+                                actionListener="#{Report.generateReportPdf}"/>
+              <af:spacer width="10" height="10" id="s2"/>
+              <af:commandButton text="Open report on popup" id="cb3pdf"
+                                actionListener="#{Report.generateReportAsPopupPdf}"/>
+            </af:panelGroupLayout>
+            <!--xlsx-->
+            <af:spacer width="10" height="10" id="s4"/>
+            <af:outputText value="Xlsx report" id="ot3"/>
+            <af:panelGroupLayout id="pgl4" halign="center" layout="horizontal">
+              <af:commandButton text="Download report" id="cb1xlsx">
+                <af:fileDownloadActionListener method="#{Report.downloadReportXlsx}"
+                                               filename="test #{Report.currentDate}.xlsx"
+                                               contentType="#{Report.contectType}"/>
+              </af:commandButton>
+           
+           
+            </af:panelGroupLayout>
+            <!--Docx-->
+            <af:spacer width="10" height="10" id="s7"/>
+            <af:outputText value="Docx report" id="ot4"/>
+            <af:panelGroupLayout id="pgl5" halign="center" layout="horizontal">
+              <af:commandButton text="Download report" id="cb4docx">
+                <af:fileDownloadActionListener method="#{Report.downloadReportDocx}"
+                                               filename="test #{Report.currentDate}.docx"
+                                               contentType="#{Report.contectType}"/>
+              </af:commandButton>
+             
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

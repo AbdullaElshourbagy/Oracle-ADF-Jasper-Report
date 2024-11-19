@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test_sub" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1">
+		<parameter name="dept_id" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[select * from hr.employees
+where  department_ID=$P{dept_id}]]>
+		</queryString>
+		<field name="EMPLOYEE_ID" class="java.math.BigDecimal"/>
+		<field name="FIRST_NAME" class="java.lang.String"/>
+		<field name="LAST_NAME" class="java.lang.String"/>
+		<field name="EMAIL" class="java.lang.String"/>
+		<field name="PHONE_NUMBER" class="java.lang.String"/>
+		<field name="HIRE_DATE" class="java.sql.Timestamp"/>
+		<field name="JOB_ID" class="java.lang.String"/>
+		<field name="SALARY" class="java.math.BigDecimal"/>
+		<field name="COMMISSION_PCT" class="java.math.BigDecimal"/>
+		<field name="MANAGER_ID" class="java.math.BigDecimal"/>
+		<field name="DEPARTMENT_ID" class="java.math.BigDecimal"/>
+		<field name="DELETED" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="dept_id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select null from dual]]>
+	</queryString>
+	<field name="NULL" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="163" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="18" y="13" width="525" height="140"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1">
+						<datasetParameter name="dept_id">
+							<datasetParameterExpression><![CDATA[$P{dept_id}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="103">
+						<jr:detailCell style="table_TD" height="38" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="103" height="38"/>
+								<textElement/>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{FIRST_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="126">
+						<jr:detailCell style="table_TD" height="38" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="126" height="38"/>
+								<textElement/>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{LAST_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="116">
+						<jr:detailCell style="table_TD" height="38" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="116" height="38"/>
+								<textElement/>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{EMAIL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="175">
+						<jr:detailCell style="table_TD" height="38" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="175" height="38"/>
+								<textElement/>
+								<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{HIRE_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>
