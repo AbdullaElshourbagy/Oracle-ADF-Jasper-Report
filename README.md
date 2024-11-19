@@ -1,2 +1,2 @@
 # Oracle-ADF-Jasper-Report-
-Oracle ADF project to integrate with Jasper Ireport
+Oracle ADF project to integrate with jasper ireport example
